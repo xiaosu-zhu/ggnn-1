@@ -46,6 +46,25 @@ target_include_directories(sift1m_multi
 )
 target_link_libraries(sift1m_multi ${CUDA_curand_LIBRARY} glog::glog)
 
+cuda_add_executable(test_ggnn src/test.cu)
+target_include_directories(test_ggnn
+  PRIVATE
+  ${CUDA_NVCC_FLAGS}
+  ${CUB_INCLUDE_PATH}
+  ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+target_link_libraries(test_ggnn ${CUDA_curand_LIBRARY} glog::glog)
+
+
+cuda_add_executable(project_run src/project.cu)
+target_include_directories(project_run
+  PRIVATE
+  ${CUDA_NVCC_FLAGS}
+  ${CUB_INCLUDE_PATH}
+  ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+target_link_libraries(project_run ${CUDA_curand_LIBRARY} glog::glog)
+
 cuda_add_executable(sift1b_subsets src/sift1b_subsets.cu)
 target_include_directories(sift1b_subsets
   PRIVATE
